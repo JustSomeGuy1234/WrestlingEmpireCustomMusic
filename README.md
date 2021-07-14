@@ -3,6 +3,7 @@ A mod for the crazy game Wrestling Empire (PC version) that allows you to add cu
 Currently for version v1.2
 
 # Installation
+0. Download the latest release of the mod (found on the right side of this page)
 1. Run the executable called WrestlingEmpireCustomMusicPatcher.exe and a new window will appear.
 1. Find the Assembly-CSharp.dll file in the games folder. 
     * This is probably Steam/Steamapps/Wrestling Empire/Wrestling Empire_Data/Managed/Assembly-CSharp.dll

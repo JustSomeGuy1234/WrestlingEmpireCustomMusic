@@ -34,3 +34,10 @@ Unfortunately, the vast majority of the game is deobfuscated. Luckily, however, 
 No, but making a mod to load that kind of thing is absolutely possible! Hell, it could be really easy but I haven't looked.
 This mod basically imports music and adds it to an array. 
 I think adding custom textures or models and such should be just as easy, once the correct code is deobfuscated.
+
+# Source code?
+Source code for the patcher is not yet available, but it's in C# so you can decompile the executable with something like dnSpy. 
+The code is not something I'd like to proudly share, but I might upload it one day.
+
+As for source code of the mod, it's not something I can share without giving away source code of the game. 
+If you do own the game though, you can patch a copy of the assembly dll then open it with a dn decompiler, and check out the ModdedMusic class and the SoundManager.LoadTheme() method.

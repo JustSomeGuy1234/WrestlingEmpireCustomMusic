@@ -1,5 +1,5 @@
 # Wrestling Empire Custom Music
-A mod for the PC crazy game Wrestling Empire that allows you to add custom character themes by simply putting them in a folder.
+A mod for the crazy game Wrestling Empire (PC version) that allows you to add custom character themes by simply putting them in a folder.
 Currently for version v1.2
 
 # Installation

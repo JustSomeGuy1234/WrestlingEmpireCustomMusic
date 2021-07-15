@@ -17,6 +17,7 @@ This is in Wrestling Empire/Wrestling Empire_Data/StreamingAssets/
 Simply place your .wav, .mp3 and .ogg files in this folder and they will appear in the theme select in the editor the next time you start your game.
 
 # Issues
+Read through the open issues in the issues tab at the top left of the page. This is where issues are listed. Other than those...
 Currently no known real issues. That does not mean there aren't any. Due to the weird way MDickie wrote the game, the game is very fragile and this mod could break anything and everything in an edge scenario.
 
 If you remove a song, any character using a modded song will either be using the next song up, or will have their song set to none.

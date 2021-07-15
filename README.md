@@ -22,7 +22,7 @@ Currently for version v1.2
 A new folder called Custom Music will be created in the StreamingAssets folder. 
 This is in Wrestling Empire/Wrestling Empire_Data/StreamingAssets/
 Simply place your .wav, .mp3 and .ogg files in this folder and they will appear in the theme select in the editor the next time you start your game.
-Do NOT have any commas in your filenames as it may break the mod, and probably therefor game. For safety, remove any punctuation from your filenames.
+Do NOT have any commas in your filenames as it may break the mod, and probably therefor the game. For safety, remove any punctuation from your filenames.
 
 # Uninstalling
 Either verify files through Steam, or overwrite the modded assembly file with your backup. You can then delete the Custom Music folder from StreamingAssets.

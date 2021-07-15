@@ -14,7 +14,7 @@ Currently for version v1.2
 # How to add custom songs
 A new folder called Custom Music will be created in the StreamingAssets folder. 
 This is in Wrestling Empire/Wrestling Empire_Data/StreamingAssets/
-Simply place your .wav, .mp3 and .ogg files in this folder and they will appear the next time you start your game.
+Simply place your .wav, .mp3 and .ogg files in this folder and they will appear in the theme select in the editor the next time you start your game.
 
 # Issues
 Currently no known real issues. That does not mean there aren't any. Due to the weird way MDickie wrote the game, the game is very fragile and this mod could break anything and everything in an edge scenario.

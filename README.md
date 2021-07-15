@@ -14,9 +14,9 @@ Currently for version v1.2
 4. Drag and drop the assembly file onto the console window and press enter. You may have to re-focus the window by clicking on it before pressing enter.
 
 # Updating
-0. Restore the original Assembly-CSharp.dll file. If you don't restore the original dll file, this will break the game and the files must be verified (see next bullet point)
+1. Restore the original Assembly-CSharp.dll file. If you don't restore the original dll file, this will break the game and the files must be verified (see next bullet point)
       * If you don't have a backup, go to Steam, right click the game, click Properties, click "Local Files" on the left side, and click "Verify integrity of game files"
-1. Follow installation instructions above.
+2. Follow installation instructions above.
 
 # How to add custom songs
 A new folder called Custom Music will be created in the StreamingAssets folder. 

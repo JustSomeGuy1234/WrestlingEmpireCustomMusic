@@ -41,7 +41,7 @@ As a beneficial upside, this mod also deobfuscates a lot of the code. Feel free 
   Some of it is purely wrong, but a lot of it is right (as far as I can tell).
 
 # Future game updates
-Unfortunately, the vast majority of the game is deobfuscated. Luckily, however, re-implementing/updating this mod should pretty simple as most of my code is in a custom class, and only a small portion of the games code is actually touched.
+Unfortunately, the vast majority of the game is obfuscated. Luckily, however, re-implementing/updating this mod should pretty simple as most of my code is in a custom class, and only a small portion of the games code is actually touched.
 
 # Can this mod load other custom things like clothing or faces?
 No, but making a mod to load that kind of thing is absolutely possible! Hell, it could be really easy but I haven't looked.

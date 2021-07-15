@@ -3,18 +3,28 @@ A mod for the crazy game Wrestling Empire (PC version) that allows you to add cu
 Currently for version v1.2
 
 # Installation
-0. Download the latest release of the mod (found on the right side of this page)
-1. Run the executable called WrestlingEmpireCustomMusicPatcher.exe and a new window will appear.
-1. Find the Assembly-CSharp.dll file in the games folder. 
+1. Download the latest release of the mod (found on the right side of this page)
+2. Run the executable called WrestlingEmpireCustomMusicPatcher.exe and a new window will appear.
+3. Find the Assembly-CSharp.dll file in the games folder. 
     * This is probably Steam/Steamapps/Wrestling Empire/Wrestling Empire_Data/Managed/Assembly-CSharp.dll
     * A very easy way to get here is to go into Steam, right click Wrestling Empire, hover over manage and click "Browse local files".
-       * Then simply go into Wrestling Empire_Data then Managed and it will be the top file if sorted alphabetically.
-1. Drag and drop the assembly file onto the console window and press enter. You may have to re-focus the window by clicking on it before pressing enter.
+      * Then simply go into Wrestling Empire_Data then Managed and it will be the top file if sorted alphabetically.
+    * Backup the file before you do the next step. You can just copy and paste the file and it will be named "- Copy"
+      * When restoring this file, just delete the current dll file and remove " - Copy" from the backup filename so it takes the modded one's place
+4. Drag and drop the assembly file onto the console window and press enter. You may have to re-focus the window by clicking on it before pressing enter.
+
+# Updating
+0. Restore the original Assembly-CSharp.dll file. If you don't restore the original dll file, this will break the game and the files must be verified (see next bullet point)
+      * If you don't have a backup, go to Steam, right click the game, click Properties, click "Local Files" on the left side, and click "Verify integrity of game files"
+1. Follow installation instructions above.
 
 # How to add custom songs
 A new folder called Custom Music will be created in the StreamingAssets folder. 
 This is in Wrestling Empire/Wrestling Empire_Data/StreamingAssets/
 Simply place your .wav, .mp3 and .ogg files in this folder and they will appear in the theme select in the editor the next time you start your game.
+
+# Uninstalling
+Either verify files through Steam, or overwrite the modded assembly file with your backup. You can then delete the Custom Music folder from StreamingAssets.
 
 # Issues
 Read through the open issues in the issues tab at the top left of the page. This is where issues are listed. Other than those...
@@ -29,7 +39,7 @@ A file will get created called IndexListFile. This file is a relic that doesn't 
 As a beneficial upside, this mod also deobfuscates a lot of the code. Feel free to open the assembly dll with a dn decompiler and see what I think is what. 
   Some of it is purely wrong, but a lot of it is right (as far as I can tell).
 
-# Future updates
+# Future game updates
 Unfortunately, the vast majority of the game is deobfuscated. Luckily, however, re-implementing/updating this mod should pretty simple as most of my code is in a custom class, and only a small portion of the games code is actually touched.
 
 # Can this mod load other custom things like clothing or faces?

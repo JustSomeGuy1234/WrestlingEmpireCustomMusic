@@ -12,6 +12,7 @@ Currently for game version v1.2. **THIS MOD WILL NOT WORK WITH EARLIER OR NEWER 
     * Backup the file before you do the next step. You can just copy and paste the file and it will be named "- Copy"
       * When restoring this file, just delete the current dll file and remove " - Copy" from the backup filename so it takes the modded one's place
 4. Drag and drop the assembly file onto the console window and press enter. You may have to re-focus the window by clicking on it before pressing enter.
+5. CLOSE THE PATCHER ONCE IT SAYS IT HAS FINISHED. Otherwise, the patch will not be completed properly.
 
 # Updating
 1. Restore the original Assembly-CSharp.dll file. If you don't restore the original dll file, this will break the game and the files must be verified (see next bullet point)

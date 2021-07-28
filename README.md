@@ -1,6 +1,6 @@
 # Wrestling Empire Custom Music
 A mod for the crazy game Wrestling Empire (PC version) that allows you to add custom character themes by simply putting them in a folder.
-Currently for game version v1.2. **THIS MOD WILL NOT WORK WITH EARLIER OR NEWER VERSIONS THAN SPECIFIED**
+**THIS MOD WILL NOT WORK WITH EARLIER OR NEWER VERSIONS THAN SPECIFIED**
 
 # Installation
 1. Download the latest release of the mod (found on the right side of this page)
@@ -12,7 +12,6 @@ Currently for game version v1.2. **THIS MOD WILL NOT WORK WITH EARLIER OR NEWER 
     * Backup the file before you do the next step. You can just copy and paste the file and it will be named "- Copy"
       * When restoring this file, just delete the current dll file and remove " - Copy" from the backup filename so it takes the modded one's place
 4. Drag and drop the assembly file onto the console window and press enter. You may have to re-focus the window by clicking on it before pressing enter.
-5. CLOSE THE PATCHER ONCE IT SAYS IT HAS FINISHED. Otherwise, the patch will not be completed properly.
 
 # Updating
 1. Restore the original Assembly-CSharp.dll file. If you don't restore the original dll file, this will break the game and the files must be verified (see next bullet point)
@@ -36,13 +35,11 @@ If you remove a song, any character using a modded song will either be using the
   Adding a song may also swap any modded songs that a character is using. 
   In either of these cases, simply choose the song again.
   
-A file will get created called IndexListFile. This file is a relic that doesn't really matter, but I haven't removed yet.
-
-As a beneficial upside, this mod also deobfuscates a lot of the code. Feel free to open the assembly dll with a dn decompiler and see what I think is what. 
+As a beneficial upside, this mod (may) also deobfuscate a lot of the code. Feel free to open the assembly dll with a dn decompiler and see what I think is what. 
   Some of it is purely wrong, but a lot of it is right (as far as I can tell).
 
 # Future game updates
-Unfortunately, the vast majority of the game is obfuscated. Luckily, however, re-implementing/updating this mod should pretty simple as most of my code is in a custom class, and only a small portion of the games code is actually touched.
+Unfortunately, the vast majority of the game is obfuscated. Luckily, however, re-implementing/updating this mod is very simple as most of my code is in a custom class, and only an extremely small portion of the games code is actually touched.
 
 # Can this mod load other custom things like clothing or faces?
 No, but making a mod to load that kind of thing is absolutely possible! Hell, it could be really easy but I haven't looked.

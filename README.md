@@ -9,13 +9,10 @@ A mod for the crazy game Wrestling Empire (PC version) that allows you to add cu
     * This is probably Steam/Steamapps/Wrestling Empire/Wrestling Empire_Data/Managed/Assembly-CSharp.dll
     * A very easy way to get here is to go into Steam, right click Wrestling Empire, hover over manage and click "Browse local files".
       * Then simply go into Wrestling Empire_Data then Managed and it will be the top file if sorted alphabetically.
-    * Backup the file before you do the next step. You can just copy and paste the file and it will be named "- Copy"
-      * When restoring this file, just delete the current dll file and remove " - Copy" from the backup filename so it takes the modded one's place
 4. Drag and drop the assembly file onto the console window and press enter. You may have to re-focus the window by clicking on it before pressing enter.
 
 # Updating
-1. Restore the original Assembly-CSharp.dll file. If you don't restore the original dll file, this will break the game and the files must be verified (see next bullet point)
-      * If you don't have a backup, go to Steam, right click the game, click Properties, click "Local Files" on the left side, and click "Verify integrity of game files"
+1. Go to Steam, right click the game, click Properties, click "Local Files" on the left side, and click "Verify integrity of game files"
 2. Follow installation instructions above.
 
 # How to add custom songs
@@ -25,7 +22,7 @@ Simply place your .wav, .mp3 and .ogg files in this folder and they will appear 
 Do NOT have any commas in your filenames as it may break the mod, and probably therefor the game. For safety, remove any punctuation from your filenames.
 
 # Uninstalling
-Either verify files through Steam, or overwrite the modded assembly file with your backup. You can then delete the Custom Music folder from StreamingAssets.
+Verify the game's files through Steam. You can then delete the Custom Music folder from StreamingAssets.
 
 # Issues
 Read through the open issues in the issues tab at the top left of the page. This is where issues are listed. Other than those...

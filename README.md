@@ -22,7 +22,9 @@ Simply place your .wav, .mp3 and .ogg files in this folder and they will appear 
 Do NOT have any commas in your filenames as it may break the mod, and probably therefor the game. For safety, remove any punctuation from your filenames.
 
 # Uninstalling
-Verify the game's files through Steam. You can then delete the Custom Music folder from StreamingAssets.
+Verify the game's files through Steam. You can then delete the Custom Music folder from StreamingAssets if you do not plan on re-installing.
+Once you have done this you MUST go into the editor and select each wrestler that used a modded song, making sure the song has been set to None (or anything below 41).
+If you don't, the game will try to load the modded song and softlock in a match. 
 
 # Issues
 Read through the open issues in the issues tab at the top left of the page. This is where issues are listed. Other than those...

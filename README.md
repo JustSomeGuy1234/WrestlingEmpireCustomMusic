@@ -3,11 +3,11 @@ A mod for the crazy game Wrestling Empire (PC version) that allows you to add cu
 **THIS MOD WILL NOT WORK WITH EARLIER OR NEWER VERSIONS THAN SPECIFIED**
 
 # Installation
-1. Download the latest release of the mod (found on the right side of this page). I'd recommend downloading the autoinstaller version.  
+1. Download the latest release of the mod (found on the right side of this page).
 2. Extract the zip file into a new folder, it doesn't matter where.
 3. Run the executable called WrestlingEmpireCustomMusicPatcher.exe and a new window will appear.
-4. If you downloaded the autoinstaller then no more input is required and you may add all of your favourite songs (read below).
-5. If you downloaded the normal version, then find the Assembly-CSharp.dll file in the games folder.
+4. If the patcher says it finished, then no more input is required and you may add all of your favourite songs (read below).
+5. If the patcher requires manual installation then you'll need to find the Assembly-CSharp.dll file in the games folder.
     * This is probably Steam/Steamapps/Wrestling Empire/Wrestling Empire_Data/Managed/Assembly-CSharp.dll
     * A very easy way to get here is to go into Steam, right click Wrestling Empire, hover over manage and click "Browse local files".
       * Then simply go into Wrestling Empire_Data then Managed and it will be the top file if sorted alphabetically.

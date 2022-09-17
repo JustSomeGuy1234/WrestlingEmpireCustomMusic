@@ -1,0 +1,274 @@
+Requires a .net decompiler ( dnSpy https://github.com/dnSpy/dnSpy/releases )
+
+SHORT VERSION:
+0. (optional, for logging) search all files > Search for UnityEngine.ILogger.logEnabled > Right click, Analyse > set, Used by > double click method > Change to true
+1. Rename class containing "Loading sound files" to SoundManager
+2. In SoundManager, rename int that's 68 (new) to numOfThemes -- dif
+3. In SoundManager, rename biggest audioclip array to Songs. -- dif
+4. Save.
+5. Add (ModdedMusic) class, modify curVer, and save.
+
+6. Go to Scene_Titles and add public static bool hasLoadedModdedSongs = false;
+7. In Scene_Titles, add (SceneTitlesCheck) to the Start() function
+
+8. Rename method that loads themes to LoadTheme. Search for "Playing music"
+9. Rename AudioSource to themeAS (SoundManager.randomthinghere.clip = SoundManager.Songs[somethingsomething])
+10. Modify LoadTheme: 
+10.1. Rename the int to "song"
+10.2. Add (LoadThemeCode) inbetween the if-else statement
+
+That's it.
+
+LONG (verbose) VERSION:
+First you'll need to rename the class which contains all the code relating to loading sounds and songs from assetbundles
+It will be pretty easy to find because there's over 200 lines of code right at the beginning that just load sounds
+	Try searching in dnspy (ctrl shift k) for the string (you'll have to change the data type) to "Loading sound files".
+Rename to SoundManager.
+
+Then you'll have to find the int within the SoundManager class that controls the number of songs. The value is the same as whatever is shown in the games character editor.
+Rename this to numOfThemes
+
+Last thing here you'll have to rename is the array of audioclips. 
+	This contains all songs. It is NOT actually equal numOfThemes as it contains some which I assume are not meant to be used for character themes (eg the main menu song).
+Rename this to Songs
+
+Save changes.
+Add a new class with the contents of this (ModdedMusic):
+//////////////////////////////////////////
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+
+
+public class ModdedMusic : MonoBehaviour
+{
+	
+	public void InitCustomMusic()
+	{
+		if (ModdedMusic.hasRunOnce)
+		{
+			Debug.Log("custom wrestling music ran twice");
+			return;
+		}
+		ModdedMusic.originalNumOfThemes = SoundManager.numOfThemes;
+		try
+		{
+			GameObject gameObject = new GameObject("updateCanvas");
+			Canvas canvas = gameObject.AddComponent<Canvas>();
+			GameObject gameObject2 = new GameObject("updateText");
+			Text text = gameObject2.AddComponent<Text>();
+			RectTransform component = text.GetComponent<RectTransform>();
+			gameObject2.transform.parent = gameObject.transform;
+			gameObject2.transform.localPosition = Vector3.zero;
+			text.text = "Test";
+			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+			text.font = Font.CreateDynamicFontFromOSFont("test", 14);
+			text.fontSize = 18;
+			text.alignment = TextAnchor.UpperCenter;
+			canvas.sortingOrder = 1;
+			component.sizeDelta = new Vector2(230f, 50f);
+			component.localPosition += new Vector3(0f, -50f, 0f);
+			HttpWebRequest httpWebRequest = WebRequest.CreateHttp("https://github.com/JustSomeGuy1234/WrestlingEmpireCustomMusic/releases/latest");
+			httpWebRequest.Method = "GET";
+			string originalString = httpWebRequest.GetResponse().ResponseUri.OriginalString;
+			string text2 = originalString.Substring(originalString.LastIndexOf("/"[0]) + 1);
+			if (text2 == ModdedMusic.curVer)
+			{
+				text.text = "Custom Music is all up to date.";
+			}
+			else
+			{
+				text.text = "Custom Music is out of date! Newest ver is " + text2;
+			}
+		}
+		catch (Exception)
+		{
+			Debug.Log("Custom wrestling music failed to check for updates!");
+		}
+		ModdedMusic.hasRunOnce = true;
+		ModdedMusic.IndexListFilePath = Application.streamingAssetsPath + "\\Custom Music\\IndexListFile.txt";
+		Directory.CreateDirectory(Application.streamingAssetsPath + "\\Custom Music");
+		ModdedMusic.foundFiles = Directory.GetFiles(Application.streamingAssetsPath + "\\Custom Music");
+		List<string> list = new List<string>();
+		foreach (string text3 in ModdedMusic.foundFiles)
+		{
+			if (text3.EndsWith(".wav") || text3.EndsWith(".ogg") || text3.EndsWith(".mp3"))
+			{
+				list.Add(text3);
+			}
+		}
+		ModdedMusic.foundFiles = list.ToArray();
+		if (ModdedMusic.foundFiles.Length == 0)
+		{
+			throw new Exception("No files found in Custom Music!");
+		}
+		SoundManager.numOfThemes += ModdedMusic.foundFiles.Length;
+		Array.Resize<AudioClip>(ref SoundManager.Songs, SoundManager.Songs.Length + ModdedMusic.foundFiles.Length);
+		ModdedMusic.hasFinished = true;
+	}
+
+	
+	public static void LoadModdedSong(int song)
+	{
+		IEnumerator enumerator = ModdedMusic.LoadFileIntoAudioClip(ModdedMusic.foundFiles[song], song);
+		while (enumerator.MoveNext())
+		{
+		}
+	}
+
+	
+	private static IEnumerator LoadFileIntoAudioClip(string Filename, int song)
+	{
+		AudioType audioType;
+		if (Filename.EndsWith("ogg"))
+		{
+			audioType = AudioType.OGGVORBIS;
+		}
+		else if (Filename.EndsWith("wav"))
+		{
+			audioType = AudioType.WAV;
+		}
+		else if (Filename.EndsWith("mp3"))
+		{
+			audioType = AudioType.MPEG;
+		}
+		else
+		{
+			audioType = AudioType.UNKNOWN;
+		}
+		using (UnityWebRequest clipContents = UnityWebRequestMultimedia.GetAudioClip(Filename, audioType))
+		{
+			UnityWebRequestAsyncOperation op = clipContents.SendWebRequest();
+			while (!op.isDone)
+			{
+				yield return null;
+			}
+			if (clipContents.isNetworkError)
+			{
+				Debug.Log(clipContents.error);
+			}
+			else
+			{
+				AudioClip content = DownloadHandlerAudioClip.GetContent(clipContents);
+				content.name = clipContents.url.Substring(clipContents.url.LastIndexOf("/"[0]) + 1, clipContents.url.LastIndexOf("."[0]) - 1 - clipContents.url.LastIndexOf("/"[0]));
+				SoundManager.Songs[song + ModdedMusic.originalNumOfThemes + 1] = content;
+				Debug.Log(
+				"Added " + content.name + " to index " + (song + ModdedMusic.originalNumOfThemes + 1).ToString() + " from moddedsong int " + song
+				);
+			}
+		}
+	}
+
+	
+	public static string IndexListFilePath;
+
+	
+	public static string[] foundFiles;
+
+	
+	public static bool hasFinished;
+
+	
+	private static bool hasRunOnce;
+
+	public static int originalNumOfThemes;
+
+	public static string curVer = "1.795";
+}
+///////////////////////////////////////////////////
+
+change curVer to whatever the new tag will be on github.
+There can be a weird issue when decompiling which redefines/nulls something in the ienumerator. You'll get an error when trying to recompile so just remove the compiler-generated lines if you get it.
+
+You may have to add 2 of the webrequestmodules, which you can do just by pressing a button on the bottom left of the compile window.
+
+Now compile the dll after adding the above class.
+
+Now we'll add a static bool named hasLoadedModdedSongs to the Scene_Titles class. Go to Scene_Titles and add this next line OUTSIDE of any method but within the class.
+
+//////
+public static bool hasLoadedModdedSongs = false;
+//////
+
+
+Almost there. We'll now add this code that initializes the moddedmusic code. Add this to the beginning of the Start method in the Scene_Titles.
+(SceneTitlesCheck)
+
+///////////////////////////////////////////////////
+if (!Scene_Titles.hasLoadedModdedSongs)
+{
+	Scene_Titles.hasLoadedModdedSongs = true;
+	try
+	{
+		new GameObject("moddedMusicObj").AddComponent<ModdedMusic>().InitCustomMusic();
+		Debug.Log("Loading ModdedMusic, please wait for files to be loaded asynchronously.");
+	}
+	catch (Exception ex)
+	{
+		Debug.Log("Modded music error: " + ex.Message);
+	}
+}
+///////////////////////////////////////////////////
+
+
+And finally, go back to SoundManager.
+This bit is pretty specific, so pay attention.
+
+We need to find and rename the method that assigns/loads the theme.
+	It's very easy to find within the SoundManager class because of the debug calls, which includes the words "Playing music"
+	The method also takes an int and two floats.
+We'll rename this to LoadTheme. Once that's renamed you may want to recompile just to make sure everything works.
+
+
+We now need to find the right audio source. This audiosource is the thing that actually plays the theme music.
+	It's easy to identify because of the line
+	SoundManager.randomthinghere.clip = SoundManager.Songs[somethingsomething];
+	which is within LoadTheme.
+	The thing that preceeds .clip is the audiosource (in this case it's called "randomthinghere"). 
+We will rename this "themeAS".
+	
+Now that we've renamed the audiosource we need to modify LoadTheme to load our songs.	There's one very specific thing here that we need to do.
+We must rename the int that is passed to the method to "song".
+	Edit the method's code, press ctrl h, put whatever the name of the int is (eg. "int abcdefghij") in the first box and "int song" (no quotes) in the bottom box. Replace.
+
+Second to last thing now.
+Copy and paste the following code to inbetween the if/else statement of the LoadTheme method (paste it on the end of the last line before else).
+(LoadThemeCode)
+
+///////////////////////////////////////////////////
+else if (song > ModdedMusic.originalNumOfThemes)
+{
+	Debug.Log("Loading Modded song at index: " + song);
+	int moddedSong = song - ModdedMusic.originalNumOfThemes;
+	moddedSong--;
+	if (song > SoundManager.Songs.Length)
+	{
+		Debug.Log("There are more songs in the UI than loaded!");
+	}
+	if (SoundManager.Songs[song] == null)
+	{
+		Debug.Log("Modded song is null! Trying to load...");
+		Debug.Log("Soundmanager.songs.length is " + SoundManager.Songs.Length);
+		Debug.Log("ModdedMusic.foundFiles length is: " + ModdedMusic.foundFiles.Length);
+		Debug.Log(string.Concat(new object[]
+		{
+			"Adding moddedClip ",
+			moddedSong,
+			" to Songs array index ",
+			song
+		}));
+		ModdedMusic.LoadModdedSong(moddedSong);
+	}
+	SoundManager.themeAS.clip = SoundManager.Songs[song];
+}
+///////////////////////////////////////////////////
+
+
+Finally and optionally, change search options to search all files > Search for UnityEngine.ILogger.logEnabled > Right click, Analyse > set, Used by > double click method > Set to true.
+This will enable logging to the game's appdata folder.
+If there's no results for Used by, then no need to do anything.

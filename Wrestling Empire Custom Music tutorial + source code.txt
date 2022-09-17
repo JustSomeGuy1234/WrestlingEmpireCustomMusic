@@ -3,8 +3,8 @@ Requires a .net decompiler ( dnSpy https://github.com/dnSpy/dnSpy/releases )
 SHORT VERSION:
 0. (optional, for logging) search all files > Search for UnityEngine.ILogger.logEnabled > Right click, Analyse > set, Used by > double click method > Change to true
 1. Rename class containing "Loading sound files" to SoundManager
-2. In SoundManager, rename int that's 68 (new) to numOfThemes -- dif
-3. In SoundManager, rename biggest audioclip array to Songs. -- dif
+2. In SoundManager, rename the top int that's to numOfThemes. (should be same as number of songs you can choose)
+3. In SoundManager, rename biggest audioclip array to Songs.
 4. Save.
 5. Add (ModdedMusic) class, modify curVer, and save.
 
@@ -19,7 +19,7 @@ SHORT VERSION:
 
 That's it.
 
-LONG (verbose) VERSION:
+LONG VERSION:
 First you'll need to rename the class which contains all the code relating to loading sounds and songs from assetbundles
 It will be pretty easy to find because there's over 200 lines of code right at the beginning that just load sounds
 	Try searching in dnspy (ctrl shift k) for the string (you'll have to change the data type) to "Loading sound files".
@@ -197,6 +197,7 @@ public static bool hasLoadedModdedSongs = false;
 
 
 Almost there. We'll now add this code that initializes the moddedmusic code. Add this to the beginning of the Start method in the Scene_Titles.
+
 (SceneTitlesCheck)
 
 ///////////////////////////////////////////////////
@@ -238,6 +239,7 @@ We must rename the int that is passed to the method to "song".
 
 Second to last thing now.
 Copy and paste the following code to inbetween the if/else statement of the LoadTheme method (paste it on the end of the last line before else).
+
 (LoadThemeCode)
 
 ///////////////////////////////////////////////////
